@@ -33,18 +33,18 @@ originator of Python 3.5's :mod:`typing <typing>` module. Let's use one
 of its
 `examples <http://mypy.readthedocs.org/en/latest/basics.html#function-signatures>`_:
 
-.. literalinclude:: ../examples/01.py
+.. literalinclude:: examples/01.py
 
 This example shows the most important part of type hinting: it is
 *optional*. Python hasn't changed to suddenly require static typing.
 But if we add a little more:
 
-.. literalinclude:: ../examples/02.py
+.. literalinclude:: examples/02.py
     :emphasize-lines: 1
 
 ...then we can let an IDE such as PyCharm help us:
 
-.. image:: ../screenshots/02a.png
+.. image:: screenshots/02a.png
 
 What Is (and Isn't) Type Hinting?
 =================================
@@ -100,19 +100,19 @@ value. What if I want to say hello to a list of names?
 Python 3.5's type hinting provides an answer for this. Namely, you can
 express the hint as "a list of strings":
 
-.. literalinclude:: ../examples/04.py
+.. literalinclude:: examples/04.py
     :emphasize-lines: 1, 4
 
 What happens if we ignore the hint and supply a list of integers?
 PyCharm warns us:
 
-.. image:: ../screenshots/04a.png
+.. image:: screenshots/04a.png
 
 PEP 484 refers to hints such as ``List`` as "generics". That is, a hint
 that contains other hints. An ``Iterator`` for example is a list-y kind
 of generic. As you would expect, dictionaries are supported:
 
-.. literalinclude:: ../examples/05.py
+.. literalinclude:: examples/05.py
     :emphasize-lines: 1, 5
 
 In this case we see an unusual-looking structure: ``Dict[str, int]``.
@@ -128,7 +128,7 @@ generates the warning.*
 
 Let's say we refactor my greeting into a class:
 
-.. literalinclude:: ../examples/06.py
+.. literalinclude:: examples/06.py
 
 Still basically the same as before. Later, we do a lot of work, and
 decide the ``greet`` method would seem better if it was renamed to
@@ -138,7 +138,7 @@ rename all the usages!)
 
 This is a case that type hinting will help on:
 
-.. image:: ../screenshots/06a.png
+.. image:: screenshots/06a.png
 
 This applies to class attributes as well. Sure, if you have good test
 coverage, then this will become obvious when you write tests. But not
@@ -153,18 +153,18 @@ We are now passing in a string to use for formatting. But maybe we'd
 like our class to provide a default string. Let's allow ``None`` as a
 value that can be passed in, in addition to a string:
 
-.. literalinclude:: ../examples/07.py
+.. literalinclude:: examples/07.py
 
 Alas, type hinting now warns us that the first argument has to be a
 string:
 
-.. image:: ../screenshots/07.png
+.. image:: screenshots/07.png
 
 Fortunately there are several ways to solve this, each useful in various
 circumstances. For example, we could use regular Python and make this a
 keyword option with a default:
 
-.. literalinclude:: ../examples/07a.py
+.. literalinclude:: examples/07a.py
     :emphasize-lines: 2, 12
 
 With this, you can omit passing in a format string and instead use a
@@ -172,12 +172,12 @@ value of ``None``. (Of course, you could skip the following test and
 just make the format string the keyword default.) If you pass in an
 integer, though, you'll get warned:
 
-.. image:: ../screenshots/07a-broken.png
+.. image:: screenshots/07a-broken.png
 
 Here's another variation: allow your users to pass in a formatting
 string or ``False``:
 
-.. literalinclude:: ../examples/07b.py
+.. literalinclude:: examples/07b.py
     :emphasize-lines: 1, 5, 15
 
 The ``Union`` type from ``typing``, as shown here, lets the type be
@@ -185,7 +185,7 @@ from any of the provided type values. In this case, ``str`` or ``bool``.
 
 Here, though, is the approach that best conveys the meaning of optional:
 
-.. literalinclude:: ../examples/07c.py
+.. literalinclude:: examples/07c.py
     :emphasize-lines: 1, 5, 15
 
 That is, PEP 484 type hinting defines a generic type of ``Optional``.
@@ -199,7 +199,7 @@ Well, that works fine, as type hinting just infers the type at the
 point of declaration. Then, if you later try to override it later with
 a different type, you get a warning:
 
-.. literalinclude:: ../examples/08.py
+.. literalinclude:: examples/08.py
     :emphasize-lines: 2, 9
 
 *TODO PyCharm doesn't warn in this case...do I misunderstand the PEP?*
@@ -207,7 +207,7 @@ a different type, you get a warning:
 If you want more flexibility or control, you can override the type
 inference with an explicit definition in a specially-formatted comment:
 
-.. literalinclude:: ../examples/08a.py
+.. literalinclude:: examples/08a.py
     :emphasize-lines: 5
 
 "Putting meaning in a comment?" you might ask. "Isn't that as bad as
@@ -222,7 +222,7 @@ I follow a pattern where I use a static method on my class to query for
 instances. Hey, I saw someone smart post it once, don't judge me. For
 example, in a SQLAlchemy model:
 
-.. literalinclude:: ../examples/09.py
+.. literalinclude:: examples/09.py
     :start-after: start-here
     :emphasize-lines: 6-8
 
@@ -230,13 +230,13 @@ Unfortunately, that fails. As the :mod:`mypy` docs explain: "Python
 does not allow references to a class object before the class is
 defined.":
 
-.. image:: ../screenshots/09-broken.png
+.. image:: screenshots/09-broken.png
 
 To fix this, type hinting has the concept of a *forward reference*. In
 the location where you would normally provide the hint, just provide
 that same hint, but in a string:
 
-.. literalinclude:: ../examples/09a.py
+.. literalinclude:: examples/09a.py
     :start-after: start-here
     :emphasize-lines: 7
 
@@ -258,23 +258,23 @@ extra files, named the same as the module they are stubbing, which
 contain the type hints. For example, imagine we have a simple function
 in a module with a filename of ``greeting.py``:
 
-.. literalinclude:: ../examples/03.py
+.. literalinclude:: examples/03.py
 
 No type hinting. Then, imagine a second file, in the same directory,
 named ``greeting.pyi``:
 
-.. literalinclude:: ../examples/greeting.pyi
+.. literalinclude:: examples/greeting.pyi
 
 The addition of the ``.pyi`` suffix makes this shadow the original
 module. PyCharm helps by denoting the stubbing with an asterisk in
 the gutter, and a mouseover gives more detail:
 
-.. image:: ../screenshots/greeting-broken1.png
+.. image:: screenshots/greeting-broken1.png
 
 If we now try to "break the rules" of type hinting, we'll get
 the same effect we would if we put the type hints directly in our code:
 
-.. image:: ../screenshots/greeting-broken2.png
+.. image:: screenshots/greeting-broken2.png
 
 Superclasses
 ============
@@ -297,14 +297,14 @@ Based on this, you'd also need return different types of values.
 
 Here's what the type hinting would look like:
 
-.. literalinclude:: ../examples/11.py
+.. literalinclude:: examples/11.py
 
 Gorgeous, isn't it? Well, not so much. For cases like this, Python 3.5
 type hinting provides a *type alias*: a way to define the type hint
 information in one place, then use it in one or more other places.
 Let's define a type alias for a GreetingType:
 
-.. literalinclude:: ../examples/11a.py
+.. literalinclude:: examples/11a.py
 
 That's a lot tidier, letting the function usage concentrate on the
 meaning and the declaration contain the noise....erm, provide the
