@@ -12,6 +12,7 @@ Contents
    :maxdepth: 1
 
    type_hinting/index
+   pyrva-type-hinting/index
 
 
 Indices and tables
