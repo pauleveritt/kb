@@ -164,31 +164,6 @@ Here, though, is the approach that best conveys the meaning of optional:
 
 That is, PEP 484 type hinting defines a generic type of ``Optional``.
 
-Class Attribute
-===============
-
-As an extension of the above, what if we turn the default
-format into a class attribute, and if you don't like it, you override it.
-Well, that works fine, as type hinting just infers the type at the
-point of declaration. Then, if you later try to override it later with
-a different type, you get a warning:
-
-.. literalinclude:: examples/08.py
-    :emphasize-lines: 2, 9
-
-*TODO PyCharm doesn't warn in this case...do I misunderstand the PEP?*
-
-If you want more flexibility or control, you can override the type
-inference with an explicit definition in a specially-formatted comment:
-
-.. literalinclude:: examples/08a.py
-    :emphasize-lines: 5
-
-"Putting meaning in a comment?" you might ask. "Isn't that as bad as
-the formatted-docstring type hinting we are replacing?" That's a good
-point, but remember the constraint of PEP 484: its syntax needed to
-allow code to run in pre-3.5 versions of Python.
-
 String-Based Hints
 ==================
 
@@ -249,17 +224,6 @@ If we now try to "break the rules" of type hinting, we'll get
 the same effect we would if we put the type hints directly in our code:
 
 .. image:: screenshots/greeting-broken2.png
-
-Superclasses
-============
-
-*TODO: PyCharm doesn't support warning when a subclass changes the type
-of a superclass.*
-
-- Show overriding a method and returning a different value, triggers
-  warning
-
-- Show abstract base class
 
 Type Aliases
 ============
