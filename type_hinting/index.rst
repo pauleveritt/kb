@@ -120,32 +120,6 @@ Think of the values between the brackets as "arguments" to the generic
 ``Dict`` type. The first argument is the type of the dictionary keys.
 The second is the type of the dictionary values.
 
-Missing Method/Attribute
-========================
-
-*TODO: I'm not sure this is actually PEP 484 support in PyCharm that
-generates the warning.*
-
-Let's say we refactor my greeting into a class:
-
-.. literalinclude:: examples/06.py
-
-Still basically the same as before. Later, we do a lot of work, and
-decide the ``greet`` method would seem better if it was renamed to
-``say_hi``. We change it in the class, but forget to change it in the
-code that consumes the class. (Should have used PyCharm refactoring to
-rename all the usages!)
-
-This is a case that type hinting will help on:
-
-.. image:: screenshots/06a.png
-
-This applies to class attributes as well. Sure, if you have good test
-coverage, then this will become obvious when you write tests. But not
-everybody writes full tests as they are still exploring, and you still
-won't find out until the tests are run. It's nice to have a tool tell
-you immediately.
-
 Optional Values
 ===============
 
