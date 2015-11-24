@@ -1,3 +1,7 @@
+====================================================
+Pylyglot: Frontend Development for Python Developers
+====================================================
+
 Python has long been a stable of web development. In the recent world
 of “web apps”, though, the browser is playing a larger role. More of the
 application in a web app is done in JavaScript, in the “frontend”, with
@@ -33,19 +37,33 @@ Ditch the Browser, Go With Node
 ===============================
 
 - Make the case for Pythonic development outside the browser
+
 - Get Node installed
+
 - Write a JS file
+
     - Function
+
     - Call it from a console.log
+
     - Run it
+
 - Connect into an HTML page
+
 - Launch the HTML page with PyCharm
-- (Q) Does node have the if __name__ convention?
+
+- Q: Does node have the if __name__ convention?
+
     - http://goo.gl/hWhLNe
+
     - If it works, remove console.log
+
 - Commentary
+
     - Explain iojs
+
     - Think about both contexts, Node and browser, but start with Node
+
     - Think about making the frontend first, then make the backend
 
 Developer Tooling with NPM
