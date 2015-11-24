@@ -278,7 +278,7 @@ That's a walkthrough Python 3.5 type hinting: what it is and isn't, and
 ways that it can help you write quality code faster. This article isn't
 an exhaustive treatment of all the options. For more information, take
 a look at the :mod:`mypy`
-`examples <http://mypy.readthedocs.org/en/latest/basics.html#function-signatures>`_:
+`examples <http://mypy.readthedocs.org/en/latest/basics.html#function-signatures>`_
 and :pep:`484`.
 
 It's Alive!
